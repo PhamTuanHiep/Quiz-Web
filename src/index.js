@@ -7,22 +7,20 @@ import { Provider } from 'react-redux'
 import { createStore } from 'redux'
 import rootReducer from './store/reducers/rootReducer';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import User from './components/User/User';
+import Admin from './components/Admin/Admin';
 
 const reduxStore = createStore(rootReducer)
 const root = ReactDOM.createRoot(document.getElementById('root'));
-// root.render(
-//   <React.StrictMode>
-//     <Provider store={reduxStore}>
-//       <App />
-//     </Provider>
-//   </React.StrictMode>
-// );
 root.render(
-  // <React.StrictMode>
-  //   <App />
-  // </React.StrictMode>
-  <App />
-
+  <BrowserRouter>
+    <Routes>
+      <Route path='/' element={<App />}></Route>
+      <Route path='users' element={<User />}></Route>
+      <Route path='admins' element={<Admin />}></Route>
+    </Routes>
+  </BrowserRouter>
 );
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
