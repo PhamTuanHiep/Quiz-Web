@@ -8,9 +8,6 @@ const App = () => {
       <div className='header-container'>
         <Header />
       </div>
-      <div className='header-container'>
-
-      </div>
       <div className='main-container'>
 
       </div>
