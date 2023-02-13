@@ -10,6 +10,10 @@ import {
 } from 'react-pro-sidebar';
 import { FaTachometerAlt, FaGem, FaList, FaGithub, FaRegLaughWink, FaHeart } from 'react-icons/fa';
 import sidebarBg from '../../assets/bg2.jpg';
+import './SideBar.scss'
+
+import { DiReact } from 'react-icons/di';
+import { MdDashboard } from "react-icons/md";
 
 const SideBar = (props) => {
     const { image, collapsed, toggled, handleToggleSidebar } = props
@@ -35,6 +39,7 @@ const SideBar = (props) => {
                             whiteSpace: 'nowrap',
                         }}
                     >
+                        <DiReact size={'3em'} color={'00bfff'} />
                         Hỏi dân IT
                     </div>
                 </SidebarHeader>
@@ -42,21 +47,24 @@ const SideBar = (props) => {
                 <SidebarContent>
                     <Menu iconShape="circle">
                         <MenuItem
-                            icon={<FaTachometerAlt />}
-                            suffix={<span className="badge red">New</span>}
+                            icon={<MdDashboard />}
+                        // icon={<FaTachometerAlt />}
+                        // suffix={<span className="badge red">New</span>}
                         >
-                            dashboard
+                            Dashboard
                         </MenuItem>
-                        <MenuItem icon={<FaGem />}> components</MenuItem>
+                        {/* <MenuItem icon={<FaGem />}> components</MenuItem> */}
                     </Menu>
                     <Menu iconShape="circle">
                         <SubMenu
-                            suffix={<span className="badge yellow">3</span>}
-                            icon={<FaRegLaughWink />}
+                            // suffix={<span className="badge yellow">3</span>}
+                            // icon={<FaRegLaughWink />}
+                            icon={<FaGem />}
+                            title='Features'
                         >
-                            <MenuItem> 1</MenuItem>
-                            <MenuItem> 2</MenuItem>
-                            <MenuItem> 3</MenuItem>
+                            <MenuItem> Quản lý Users</MenuItem>
+                            <MenuItem> Quản lý bài Quiz</MenuItem>
+                            <MenuItem> Quản lý câu hỏi</MenuItem>
                         </SubMenu>
 
                     </Menu>
@@ -64,20 +72,21 @@ const SideBar = (props) => {
 
                 <SidebarFooter style={{ textAlign: 'center' }}>
                     <div
-                        className="sidebar-btn-wrapper"
+                        className="sidebar-btn-wrapper "
                         style={{
                             padding: '20px 24px',
                         }}
                     >
                         <a
-                            href="https://github.com/azouaoui-med/react-pro-sidebar"
+                            // href="https://github.com/azouaoui-med/react-pro-sidebar"
+                            href='https://github.com/PhamTuanHiep'
                             target="_blank"
                             className="sidebar-btn"
                             rel="noopener noreferrer"
                         >
-                            <FaGithub />
+                            {/* <FaGithub /> */}
                             <span style={{ whiteSpace: 'nowrap', textOverflow: 'ellipsis', overflow: 'hidden' }}>
-                                viewSource
+                                &#169; Phạm Tuấn Hiệp/Hỏi dân IT
                             </span>
                         </a>
                     </div>
