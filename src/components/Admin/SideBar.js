@@ -11,9 +11,10 @@ import {
 import { FaTachometerAlt, FaGem, FaList, FaGithub, FaRegLaughWink, FaHeart } from 'react-icons/fa';
 import sidebarBg from '../../assets/bg2.jpg';
 import './SideBar.scss'
-
+import { Link } from 'react-router-dom';
 import { DiReact } from 'react-icons/di';
 import { MdDashboard } from "react-icons/md";
+
 
 const SideBar = (props) => {
     const { image, collapsed, toggled, handleToggleSidebar } = props
@@ -52,6 +53,7 @@ const SideBar = (props) => {
                         // suffix={<span className="badge red">New</span>}
                         >
                             Dashboard
+                            <Link to="/admins" />
                         </MenuItem>
                         {/* <MenuItem icon={<FaGem />}> components</MenuItem> */}
                     </Menu>
@@ -62,7 +64,10 @@ const SideBar = (props) => {
                             icon={<FaGem />}
                             title='Features'
                         >
-                            <MenuItem> Quản lý Users</MenuItem>
+                            <MenuItem>
+                                Quản lý Users
+                                <Link to="/admins/manage-users" />
+                            </MenuItem>
                             <MenuItem> Quản lý bài Quiz</MenuItem>
                             <MenuItem> Quản lý câu hỏi</MenuItem>
                         </SubMenu>
@@ -78,7 +83,6 @@ const SideBar = (props) => {
                         }}
                     >
                         <a
-                            // href="https://github.com/azouaoui-med/react-pro-sidebar"
                             href='https://github.com/PhamTuanHiep'
                             target="_blank"
                             className="sidebar-btn"
