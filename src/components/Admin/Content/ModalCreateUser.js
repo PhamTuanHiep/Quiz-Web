@@ -3,6 +3,7 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { FcPlus } from "react-icons/fc";
 import axios from 'axios';
+import { toast } from 'react-toastify';
 
 const ModalCreateUser = (props) => {
     const { show, setShow } = props;
@@ -34,15 +35,28 @@ const ModalCreateUser = (props) => {
         console.log('upload file', URL.createObjectURL(event.target.files[0]))
     }
 
+    const validateEmail = (email) => {
+        return String(email)
+            .toLowerCase()
+            .match(
+                /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+            );
+    };
+
     const handleSubmitCreateUser = async () => {
-        //call apis
-        // let data = {
-        //     emmail: email,
-        //     password: password,
-        //     username: username,
-        //     role: role,
-        //     userImage: image,
-        // }
+        //validate
+        const isValidEmail = validateEmail(email)
+        if (!isValidEmail) {
+            toast.error('Invalid email')
+            return;
+        }
+
+        if (!password) {
+            toast.error('Invalid password')
+            return;
+        }
+
+        //submit data
         const data = new FormData();// axios
         data.append('email', email);
         data.append('password', password);
@@ -51,8 +65,14 @@ const ModalCreateUser = (props) => {
         data.append('userImage', image);
 
         let res = await axios.post('http://localhost:8081/api/v1/participant', data)
-        console.log('>>>check res: ', res)
-
+        console.log('>>>check res: ', res.data)
+        if (res.data && res.data.EC === 0) {
+            toast.success(res.data.EM)
+            handleClose();
+        }
+        if (res.data && res.data.EC !== 0) {
+            toast.error(res.data.EM)
+        }
     }
 
     return (

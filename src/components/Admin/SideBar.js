@@ -49,18 +49,15 @@ const SideBar = (props) => {
                     <Menu iconShape="circle">
                         <MenuItem
                             icon={<MdDashboard />}
-                        // icon={<FaTachometerAlt />}
-                        // suffix={<span className="badge red">New</span>}
                         >
                             Dashboard
                             <Link to="/admins" />
                         </MenuItem>
-                        {/* <MenuItem icon={<FaGem />}> components</MenuItem> */}
+
                     </Menu>
                     <Menu iconShape="circle">
                         <SubMenu
-                            // suffix={<span className="badge yellow">3</span>}
-                            // icon={<FaRegLaughWink />}
+
                             icon={<FaGem />}
                             title='Features'
                         >
@@ -88,7 +85,6 @@ const SideBar = (props) => {
                             className="sidebar-btn"
                             rel="noopener noreferrer"
                         >
-                            {/* <FaGithub /> */}
                             <span style={{ whiteSpace: 'nowrap', textOverflow: 'ellipsis', overflow: 'hidden' }}>
                                 &#169; Phạm Tuấn Hiệp/Hỏi dân IT
                             </span>
