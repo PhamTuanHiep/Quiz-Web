@@ -9,7 +9,6 @@ import ModalUpdateUser from "./ModalUpdateUser";
 
 const ManageUser = (props) => {
 
-
     const [showModalCreateUser, setShowModalCreateUser] = useState(false);
     const [showModalUpdateUser, setShowModalUpdateUser] = useState(false);
     const [dataUpdate, setDataUpdate] = useState({})
@@ -33,6 +32,9 @@ const ManageUser = (props) => {
         setDataUpdate(user)
     }
 
+    const resetUpdateData = () => {
+        setDataUpdate({})
+    }
     return (
         <div className="manage-user-container">
             <div className="title">
@@ -62,6 +64,8 @@ const ManageUser = (props) => {
                     show={showModalUpdateUser}
                     setShow={setShowModalUpdateUser}
                     dataUpdate={dataUpdate}
+                    fetchListUsers={fetchListUsers}
+                    resetUpdateData={resetUpdateData}
                 />
             </div>
         </div>

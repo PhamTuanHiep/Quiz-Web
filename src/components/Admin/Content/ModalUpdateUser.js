@@ -1,11 +1,10 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { FcPlus } from "react-icons/fc";
-import axios from 'axios';
+
 import { toast } from 'react-toastify';
-import { postCreateNewUser } from '../../../services/apiService';
-import { useEffect } from 'react';
+import { putUpdateUser } from '../../../services/apiService';
 import _ from 'lodash';
 
 const ModalUpdateUser = (props) => {
@@ -19,6 +18,7 @@ const ModalUpdateUser = (props) => {
         setRole('USER');
         setImage('');
         setPreviewImage('');
+        props.resetUpdateData();
     }
 
     const [email, setEmail] = useState("");
@@ -30,10 +30,10 @@ const ModalUpdateUser = (props) => {
 
     useEffect(() => {
         if (!_.isEmpty(dataUpdate)) {
+            //update state
             setEmail(dataUpdate.email);
             setUsername(dataUpdate.username);
             setRole(dataUpdate.role);
-            console.log(dataUpdate.role)
             setImage('');
             if (dataUpdate.image) {
                 setPreviewImage(`data:image/jpeg;base64,${dataUpdate.image}`);
@@ -66,14 +66,10 @@ const ModalUpdateUser = (props) => {
             return;
         }
 
-        if (!password) {
-            toast.error('Invalid password')
-            return;
-        }
 
 
 
-        let data = await postCreateNewUser(email, password, username, role, image);
+        let data = await putUpdateUser(dataUpdate.id, username, role, image);
         if (data && data.EC === 0) {
             toast.success(data.EM)
             handleClose();
@@ -128,7 +124,10 @@ const ModalUpdateUser = (props) => {
                         </div>
                         <div className="col-md-4">
                             <label className="form-label">Role</label>
-                            <select className="form-select" onChange={(event) => setRole(event.target.value)}>
+                            <select
+                                className="form-select"
+                                onChange={(event) => setRole(event.target.value)}
+                                value={role}>
                                 <option value='USER'>USER</option>
                                 <option value='ADMIN'>ADMIN</option>
                             </select>
@@ -140,7 +139,8 @@ const ModalUpdateUser = (props) => {
                             </label>
                             <input
                                 type='file'
-                                id='labelUpload' hidden
+                                id='labelUpload'
+                                hidden
                                 onChange={(event) => handleUploadImage(event)}
                             />
                         </div>
