@@ -1,15 +1,18 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Login.scss";
-import { postLogin } from "../../services/apiService";
+import { postRegister } from "../../services/apiService";
 import { toast } from "react-toastify";
-
-const Login = (props) => {
+import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
+import "./Register.scss";
+const Register = (props) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [username, setUsername] = useState("");
+  const [isShowPassword, setIsShowPassword] = useState("password");
   const navigate = useNavigate();
 
-  const handleLogin = async () => {
+  const handleRegister = async () => {
     //validate
     const isValidEmail = validateEmail(email);
     if (!isValidEmail) {
@@ -22,20 +25,15 @@ const Login = (props) => {
       return;
     }
     //submit apis
-    let data = await postLogin(email, password);
+    let data = await postRegister(email, password, username);
     if (data && data.EC === 0) {
       toast.success(data.EM);
-      navigate("/");
+      navigate("/Login");
     }
     if (data && +data.EC !== 0) {
       toast.error(data.EM);
     }
   };
-
-  const handleRegister = () => {
-    navigate("/Register");
-  };
-
   const validateEmail = (email) => {
     return String(email)
       .toLowerCase()
@@ -44,16 +42,26 @@ const Login = (props) => {
       );
   };
 
+  const togglePassword = () => {
+    if (isShowPassword === "password") {
+      setIsShowPassword("text");
+      return;
+    }
+    setIsShowPassword("password");
+  };
+  const handleLogin = () => {
+    navigate("/login");
+  };
   return (
-    <div className="login-container">
+    <div className="signup-container">
       <div className="header">
         Don't have an account yet ?
-        <button onClick={() => handleRegister()}>Sign up</button>
+        <button onClick={() => handleLogin()}>Sign in</button>
       </div>
-      <div className="title col-4 mx-auto">HoiDanIT</div>
+      <div className="title col-4 mx-auto">Sign Up</div>
       <div className="welcom col-4 mx-auto">Hello, who's this ?</div>
-      <div className="content-form col-4 mx-auto">
-        <div className="form-group">
+      <div className=" content-form col-4 mx-auto">
+        <div className="form-group ">
           <label>Email</label>
           <input
             type={"email"}
@@ -62,19 +70,39 @@ const Login = (props) => {
             onChange={(event) => setEmail(event.target.value)}
           />
         </div>
-        <div className="form-group">
+        <div className="form-group pass-group">
           <label>Password</label>
           <input
-            type={"password"}
-            className="form-control"
+            type={isShowPassword}
+            className="form-control "
             value={password}
             onChange={(event) => setPassword(event.target.value)}
           />
+          <div className="icon-eye" onClick={togglePassword}>
+            {isShowPassword === "password" ? (
+              <span>
+                <AiFillEyeInvisible />
+              </span>
+            ) : (
+              <span>
+                <AiFillEye />
+              </span>
+            )}
+          </div>
         </div>
+        <div className="form-group">
+          <label>Username</label>
+          <input
+            type={"text"}
+            className="form-control"
+            value={username}
+            onChange={(event) => setUsername(event.target.value)}
+          />
+          {/* </div>
         <span className="forgot-password">Forgot password ?</span>
-        <div>
-          <button className="btn-submit" onClick={() => handleLogin()}>
-            Login to HoiDanIT
+        <div> */}
+          <button className="btn btn-primary" onClick={() => handleRegister()}>
+            Create Account
           </button>
         </div>
         <div className="text-center">
@@ -92,4 +120,4 @@ const Login = (props) => {
     </div>
   );
 };
-export default Login;
+export default Register;

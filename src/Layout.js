@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import App from "./App";
 import User from "./components/User/User";
 import Admin from "./components/Admin/Admin";
@@ -6,6 +6,7 @@ import HomePage from "./components/Home/Homepage";
 import ManageUser from "./components/Admin/Content/ManageUser";
 import Dashboard from "./components/Admin/Content/DashBoard";
 import Login from "./components/Auth/Login";
+import Register from "./components/Auth/Register";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -24,6 +25,7 @@ const Layout = () => {
         </Route>
 
         <Route path="/login" element={<Login />} />
+        <Route path="/Register" element={<Register />} />
       </Routes>
       <ToastContainer
         position="top-right"
@@ -36,7 +38,6 @@ const Layout = () => {
         draggable
         pauseOnHover
       />
-      <div>asasdad</div>
     </>
   );
 };
