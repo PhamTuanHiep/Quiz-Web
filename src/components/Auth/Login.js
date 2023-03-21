@@ -33,7 +33,7 @@ const Login = (props) => {
   };
 
   const handleRegister = () => {
-    navigate("/Register");
+    navigate("/register");
   };
 
   const validateEmail = (email) => {
