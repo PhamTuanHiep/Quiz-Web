@@ -41,5 +41,6 @@ instance.interceptors.response.use(
       : Promise.reject(error);
   }
 );
+NProgress.done(true);
 
 export default instance;
