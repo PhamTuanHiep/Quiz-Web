@@ -8,7 +8,6 @@ import Question from "./Question";
 const DetailQuiz = (props) => {
   const params = useParams();
   const location = useLocation();
-  console.log("location:", location);
   const quizId = params.id;
   const [dataQuiz, setDataQuiz] = useState([]);
   const [index, setIndex] = useState(0);
@@ -20,7 +19,6 @@ const DetailQuiz = (props) => {
     let res = await getDataQuiz(quizId);
 
     if (res && res.EC === 0) {
-      // console.log("res:", res);
       let raw = res.DT;
       let data = _.chain(raw)
         // Group the elements of Array based on `color` property
@@ -43,11 +41,9 @@ const DetailQuiz = (props) => {
           return { questionId: key, answers, questionDescription, image };
         })
         .value();
-      console.log("data:", data);
       setDataQuiz(data);
     }
   };
-  console.log("dataQuiz:", dataQuiz);
   const handlePrev = () => {
     if (index - 1 < 0) return;
     setIndex(index - 1);
@@ -79,6 +75,31 @@ const DetailQuiz = (props) => {
     }
   };
 
+  const handleFinishQuiz = () => {
+    let payload = {
+      quizId: +quizId,
+      answers: [],
+    };
+    let answers = [];
+
+    if (dataQuiz && dataQuiz.length > 0) {
+      dataQuiz.forEach((question) => {
+        let questionId = question.questionId;
+        let userAnswerId = [];
+        //todo: userAnswerId
+        question.answers.forEach((a) => {
+          if (a.isSelected === true) userAnswerId.push(a.id);
+        });
+        answers.push({
+          questionId: +questionId,
+          userAnswerId: userAnswerId,
+        });
+      });
+    }
+
+    payload.answers = answers;
+  };
+
   return (
     <div className="detail-quiz-container">
       <div className="left-content">
@@ -102,9 +123,12 @@ const DetailQuiz = (props) => {
           <button className="btn btn-primary " onClick={() => handleNext()}>
             Next
           </button>
-          {/* <button className="btn btn-warning " onClick={() => handleNext()}>
+          <button
+            className="btn btn-warning "
+            onClick={() => handleFinishQuiz()}
+          >
             Finish
-          </button> */}
+          </button>
         </div>
       </div>
       <div className="right-content">count down</div>
