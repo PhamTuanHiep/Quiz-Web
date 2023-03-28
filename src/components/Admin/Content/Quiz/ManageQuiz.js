@@ -111,3 +111,15 @@ const ManageQuiz = (props) => {
   );
 };
 export default ManageQuiz;
+
+<Accordion defaultActiveKey="0">
+  <Accordion.Item eventKey="0">
+    <Accordion.Header>Title written here #1</Accordion.Header>
+    <Accordion.Body>Content written here </Accordion.Body>
+  </Accordion.Item>
+
+  <Accordion.Item eventKey="1">
+    <Accordion.Header>Title written here #2</Accordion.Header>
+    <Accordion.Body>Content written here </Accordion.Body>
+  </Accordion.Item>
+</Accordion>;
