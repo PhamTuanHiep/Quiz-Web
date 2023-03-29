@@ -1,20 +1,10 @@
 import { useEffect, useState } from "react";
-import { getAllQuizForAdmin } from "../../../../services/apiService";
 
-const TableQuiz = () => {
-  const [listQuiz, setListQuiz] = useState([]);
-
+const TableQuiz = (props) => {
+  const { listQuiz } = props;
   useEffect(() => {
-    fetchQuiz();
+    props.fetchQuiz();
   }, []);
-
-  const fetchQuiz = async () => {
-    let res = await getAllQuizForAdmin();
-    if (res && res.EC === 0) {
-      setListQuiz(res.DT);
-    }
-    console.log("res:", res);
-  };
 
   return (
     <>
@@ -39,8 +29,18 @@ const TableQuiz = () => {
                   <td>{item.description}</td>
                   <td>{item.difficulty}</td>
                   <td style={{ display: "flex", gap: "15px" }}>
-                    <button className="btn btn-warning">Edit</button>
-                    <button className="btn btn-danger">Delete</button>
+                    <button
+                      className="btn btn-warning"
+                      onClick={() => props.handleClickBtnEdit(item)}
+                    >
+                      Edit
+                    </button>
+                    <button
+                      className="btn btn-danger"
+                      onClick={() => props.handleClickBtnDelete(item)}
+                    >
+                      Delete
+                    </button>
                   </td>
                 </tr>
               );

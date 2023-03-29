@@ -6,6 +6,8 @@ import { postCreateNewQuiz } from "../../../../services/apiService";
 import { toast } from "react-toastify";
 import TableQuiz from "./TableQuiz";
 import { Accordion } from "react-bootstrap";
+import ModalEditQuiz from "./ModalEditQuiz";
+import { getAllQuizForAdmin } from "../../../../services/apiService";
 
 const options = [
   { value: "EASY", label: "EASY" },
@@ -18,6 +20,18 @@ const ManageQuiz = (props) => {
   const [description, setDescription] = useState("");
   const [type, setType] = useState("EASY");
   const [image, setImage] = useState(null);
+  const [showModalEdit, setShowModalEdit] = useState(false);
+  const [showModalDelete, setShowModalDelete] = useState(false);
+  const [dataUpdate, setDataUpdate] = useState([]);
+  const [listQuiz, setListQuiz] = useState([]);
+
+  const fetchQuiz = async () => {
+    let res = await getAllQuizForAdmin();
+    if (res && res.EC === 0) {
+      setListQuiz(res.DT);
+    }
+    console.log("res:", res);
+  };
 
   const handleChangeFile = (event) => {
     if (event.target && event.target.files && event.target.files[0]) {
@@ -42,6 +56,18 @@ const ManageQuiz = (props) => {
     }
   };
 
+  const handleClickBtnEdit = (quiz) => {
+    setShowModalEdit(true);
+    setDataUpdate(quiz);
+  };
+  const handleClickBtnDelete = (quiz) => {
+    setShowModalDelete(true);
+  };
+
+  const resetUpdateData = () => {
+    setDataUpdate({});
+  };
+  console.log("type:", type);
   return (
     <div className="quiz-container">
       <Accordion defaultActiveKey="0">
@@ -105,8 +131,20 @@ const ManageQuiz = (props) => {
       </Accordion>
 
       <div className="list-detail">
-        <TableQuiz />
+        <TableQuiz
+          handleClickBtnEdit={handleClickBtnEdit}
+          handleClickBtnDelete={handleClickBtnDelete}
+          listQuiz={listQuiz}
+          fetchQuiz={fetchQuiz}
+        />
       </div>
+      <ModalEditQuiz
+        show={showModalEdit}
+        setShow={setShowModalEdit}
+        dataUpdate={dataUpdate}
+        resetUpdateData={resetUpdateData}
+        fetchQuiz={fetchQuiz}
+      />
     </div>
   );
 };
