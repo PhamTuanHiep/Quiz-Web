@@ -6,8 +6,9 @@ import { postCreateNewQuiz } from "../../../../services/apiService";
 import { toast } from "react-toastify";
 import TableQuiz from "./TableQuiz";
 import { Accordion } from "react-bootstrap";
-import ModalEditQuiz from "./ModalEditQuiz";
 import { getAllQuizForAdmin } from "../../../../services/apiService";
+import ModalEditQuiz from "./ModalEditQuiz";
+import ModalDeleteQuiz from "./ModalDeleteQuiz";
 
 const options = [
   { value: "EASY", label: "EASY" },
@@ -24,13 +25,13 @@ const ManageQuiz = (props) => {
   const [showModalDelete, setShowModalDelete] = useState(false);
   const [dataUpdate, setDataUpdate] = useState([]);
   const [listQuiz, setListQuiz] = useState([]);
+  const [dataDelete, setDataDelete] = useState([]);
 
   const fetchQuiz = async () => {
     let res = await getAllQuizForAdmin();
     if (res && res.EC === 0) {
       setListQuiz(res.DT);
     }
-    console.log("res:", res);
   };
 
   const handleChangeFile = (event) => {
@@ -51,6 +52,7 @@ const ManageQuiz = (props) => {
       setName("");
       setDescription("");
       setImage(null);
+      fetchQuiz();
     } else {
       toast.error(res.EM);
     }
@@ -62,12 +64,13 @@ const ManageQuiz = (props) => {
   };
   const handleClickBtnDelete = (quiz) => {
     setShowModalDelete(true);
+    setDataDelete(quiz);
   };
 
   const resetUpdateData = () => {
     setDataUpdate({});
   };
-  console.log("type:", type);
+
   return (
     <div className="quiz-container">
       <Accordion defaultActiveKey="0">
@@ -143,6 +146,12 @@ const ManageQuiz = (props) => {
         setShow={setShowModalEdit}
         dataUpdate={dataUpdate}
         resetUpdateData={resetUpdateData}
+        fetchQuiz={fetchQuiz}
+      />
+      <ModalDeleteQuiz
+        show={showModalDelete}
+        setShow={setShowModalDelete}
+        dataDelete={dataDelete}
         fetchQuiz={fetchQuiz}
       />
     </div>
