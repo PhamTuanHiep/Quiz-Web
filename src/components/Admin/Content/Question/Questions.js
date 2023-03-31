@@ -8,6 +8,7 @@ import { RiImageAddFill } from "react-icons/ri";
 import { v4 as uuidv4 } from "uuid";
 import _ from "lodash";
 import Lightbox from "react-awesome-lightbox";
+import { toast } from "react-toastify";
 import {
   getAllQuizForAdmin,
   postCreateNewQuestionForQuiz,
@@ -15,7 +16,7 @@ import {
 } from "../../../../services/apiService";
 
 const Questions = (props) => {
-  const [questions, setQuestions] = useState([
+  const initQuestions = [
     {
       id: uuidv4(),
       description: "",
@@ -29,7 +30,8 @@ const Questions = (props) => {
         },
       ],
     },
-  ]);
+  ];
+  const [questions, setQuestions] = useState(initQuestions);
   const [isPreviewImage, setIspreviewImage] = useState(false);
   const [dataImagePreview, setDataImagePreview] = useState({
     title: "",
@@ -153,7 +155,27 @@ const Questions = (props) => {
   };
 
   const handleSubmitQuestionForQuiz = async () => {
-    // postCreateNewAnswerForQuestion, postCreateNewQuestionForQuiz
+    // todo
+    if (_.isEmpty(selectedQuiz)) {
+      toast.error("Please choose a quiz");
+      return;
+    }
+    // validate answer
+    // validate question
+    let isValidQ = true;
+    let indexQ1 = 0;
+    for (let i = 0; i < questions.length; i++) {
+      if (!questions[i].description) {
+        isValidQ = false;
+        indexQ1 = i;
+        break;
+      }
+    }
+    if (isValidQ === false) {
+      toast.error(`Not empty description for  ${indexQ1 + 1}`);
+      return;
+    }
+
     //submit question
     for (const question of questions) {
       const q = await postCreateNewQuestionForQuiz(
@@ -170,6 +192,8 @@ const Questions = (props) => {
         );
       }
     }
+    toast.success("Create questions and answers succeed !");
+    setQuestions(initQuestions);
   };
 
   const handlePreviewImage = (questionId) => {
