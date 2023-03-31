@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import Select from "react-select";
-import "./Questions.scss";
+import "./QuizQA.scss";
 import { BsFillPatchPlusFill } from "react-icons/bs";
 import { BsFillPatchMinusFill } from "react-icons/bs";
 import { AiOutlinePlusSquare, AiOutlineMinusCircle } from "react-icons/ai";
@@ -15,7 +15,7 @@ import {
   postCreateNewAnswerForQuestion,
 } from "../../../../services/apiService";
 
-const Questions = (props) => {
+const QuizQA = (props) => {
   const initQuestions = [
     {
       id: uuidv4(),
@@ -38,8 +38,8 @@ const Questions = (props) => {
     url: "",
   });
 
-  const [selectedQuiz, setSelectedQuiz] = useState({});
   const [listQuiz, setListQuiz] = useState([]);
+  const [selectedQuiz, setSelectedQuiz] = useState({});
 
   useEffect(() => {
     fetchQuiz();
@@ -210,8 +210,6 @@ const Questions = (props) => {
 
   return (
     <div className="questions-container">
-      <div className="title">manage questions</div>
-      <hr></hr>
       <div className="add-new-question">
         <div className="col-6 form-group">
           <label className="mb-2">Select Quiz:</label>
@@ -368,4 +366,4 @@ const Questions = (props) => {
     </div>
   );
 };
-export default Questions;
+export default QuizQA;
