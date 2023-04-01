@@ -1,9 +1,11 @@
 import { useState, useEffect } from "react";
 import Select from "react-select";
+import { toast } from "react-toastify";
 import { FETCH_USER_LOGIN_SUCCESS } from "../../../../redux/action/userAction";
 import {
   getAllQuizForAdmin,
   getAllUsers,
+  postAssignQuiz,
 } from "../../../../services/apiService";
 
 const AssignQuiz = (props) => {
@@ -23,7 +25,7 @@ const AssignQuiz = (props) => {
       let newQuiz = res.DT.map((item) => {
         return {
           value: item.id,
-          label: `${item.id} - ${item.description} `,
+          label: `${item.id} - ${item.name} `,
         };
       });
       setListQuiz(newQuiz);
@@ -40,6 +42,15 @@ const AssignQuiz = (props) => {
         };
       });
       setListUser(users);
+    }
+  };
+
+  const handleAssignQuiz = async () => {
+    let rs = await postAssignQuiz(selectedQuiz.value, selectedUser.value);
+    if (rs && rs.EC === 0) {
+      toast.success(rs.EM);
+    } else {
+      toast.error(rs.EM);
     }
   };
 
@@ -62,7 +73,14 @@ const AssignQuiz = (props) => {
         />
       </div>
       <div>
-        <button className="btn btn-warning mt-3">Assign</button>
+        <button
+          onClick={() => {
+            handleAssignQuiz();
+          }}
+          className="btn btn-warning mt-3"
+        >
+          Assign
+        </button>
       </div>
     </div>
   );
