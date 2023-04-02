@@ -35,7 +35,11 @@ const getUserWithPaginate = (page, limit) => {
 
 const postLogin = (email, password) => {
   {
-    return axios.post(`api/v1/login`, { email, password, delay: 5000 });
+    return axios.post(`api/v1/login`, {
+      email,
+      password,
+      // delay: 5000
+    });
   }
 };
 
@@ -118,6 +122,9 @@ const getQuizWithQA = (quizId) => {
   return axios.get(`api/v1/quiz-with-qa/${quizId}`);
 };
 
+const postUpsertQA = (data) => {
+  return axios.post(`api/v1/quiz-upsert-qa`, { ...data });
+};
 export {
   postCreateNewUser,
   getAllUsers,
@@ -137,4 +144,5 @@ export {
   postCreateNewAnswerForQuestion,
   postAssignQuiz,
   getQuizWithQA,
+  postUpsertQA,
 };
