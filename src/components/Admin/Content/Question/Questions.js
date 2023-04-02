@@ -217,7 +217,7 @@ const Questions = (props) => {
           <label className="mb-2">Select Quiz:</label>
           <Select
             value={selectedQuiz}
-            onChange={setSelectedQuiz}
+            onClick={setSelectedQuiz}
             options={listQuiz}
           />
         </div>
