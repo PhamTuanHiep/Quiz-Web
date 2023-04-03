@@ -5,6 +5,7 @@ import { postRegister } from "../../services/apiService";
 import { toast } from "react-toastify";
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 import "./Register.scss";
+import Language from "../Header/Language";
 const Register = (props) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -55,8 +56,9 @@ const Register = (props) => {
   return (
     <div className="signup-container">
       <div className="header">
-        Don't have an account yet ?
-        <button onClick={() => handleLogin()}>Sign in</button>
+        Already have an account ?
+        <button onClick={() => handleLogin()}>Log in</button>
+        <Language />
       </div>
       <div className="title col-4 mx-auto">Sign Up</div>
       <div className="welcom col-4 mx-auto">Hello, who's this ?</div>
