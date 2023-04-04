@@ -1,0 +1,29 @@
+.dashboard-container{
+    padding: 15px;
+    .title{
+        font-weight: 600;
+        font-size: 20px;
+    }
+    .content{
+        display:flex;
+        .c-left{
+            width: 50%;
+            border: 1px solid green;
+            display: flex;
+            flex-wrap: wrap;
+            .child{
+                width: 50%;
+                height: 150px;
+                border: 1px solid #ccc;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+        }
+        .c-right{
+            width: 50%;
+            border: 1px solid green;
+            height: 300px;
+        }
+    }
+}
