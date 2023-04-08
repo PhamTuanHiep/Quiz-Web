@@ -1,9 +1,45 @@
 {
-    "homepage": {
+"homepage": {
     "title1": " There's a better way to ask",
     "title2": "You don't want to make a boring form. And your audience won't answer one. Create a typeform instead—and make everyone happy.",
     "title3": {
-        "login": "Get started. It's free"
+        "login": "Get started. It's free",
+        "users":"Doing Quiz Now"
     }
+},          
+"admin":{
+    "Settings": "Settings",
+    "basic-nav-dropdown":{
+        "profile": "Profile",
+        "logout": "Log out"
     }
+},
+"header":{
+    "navbar-brand":"Tuan Hiep",
+    "basic-navbar-nav":{
+        "nav-link1": "Home",
+        "nav-link2": "Users",
+        "nav-link3": "Admin",
+        "btn-login":" Log in",
+        "btn-signup": " sign up",
+        "Settings": "Settings",
+        "basic-nav-dropdown":{
+            "profile": "Profile",
+            "logout": "Log out"
+        }
+    }
+},
+"login":{
+    "header":"Don't have an account yet ?",
+    "btn-register":" Sign up",
+    "title":"TuanHiep",
+    "welcom":"Hello, who's this ?",
+    "content-form":{
+        "email": "Email",
+        "password":"Password",
+        "forgot-password":"Forgot password ?",
+        "btn-submit":"Login to HoiDanIT ",
+        "text-center":"Go to Homepage"
+    }
+}
 }

@@ -7,11 +7,13 @@ import { useDispatch } from "react-redux";
 import { doLogin } from "../../redux/action/userAction";
 import { ImSpinner10 } from "react-icons/im";
 import Language from "../Header/Language";
+import { useTranslation } from "react-i18next";
 
 const Login = (props) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
+  const { t } = useTranslation();
   const dispatch = useDispatch();
   const [isLoading, setIsloading] = useState(false);
 
@@ -64,15 +66,17 @@ const Login = (props) => {
   return (
     <div className="login-container">
       <div className="header">
-        Don't have an account yet ?
-        <button onClick={() => handleRegister()}>Sign up</button>
+        {t("login.header")}
+        <button onClick={() => handleRegister()}>
+          {t("login.btn-register")}
+        </button>
         <Language />
       </div>
-      <div className="title col-4 mx-auto">HoiDanIT</div>
-      <div className="welcom col-4 mx-auto">Hello, who's this ?</div>
+      <div className="title col-4 mx-auto">{t("login.title")}</div>
+      <div className="welcom col-4 mx-auto">{t("login.welcom")}</div>
       <div className="content-form col-4 mx-auto">
         <div className="form-group">
-          <label>Email</label>
+          <label>{t("login.content-form.email")}</label>
           <input
             type={"email"}
             className="form-control"
@@ -81,7 +85,7 @@ const Login = (props) => {
           />
         </div>
         <div className="form-group">
-          <label>Password</label>
+          <label>{t("login.content-form.password")}</label>
           <input
             type={"password"}
             className="form-control"
@@ -90,7 +94,9 @@ const Login = (props) => {
             onKeyDown={(event) => handleKeyDown(event)}
           />
         </div>
-        <span className="forgot-password">Forgot password ?</span>
+        <span className="forgot-password">
+          {t("login.content-form.forgot-password")}
+        </span>
         <div>
           <button
             className="btn-submit"
@@ -98,7 +104,7 @@ const Login = (props) => {
             disabled={isLoading}
           >
             {isLoading === true && <ImSpinner10 className="loaderIcon" />}
-            <span>Login to HoiDanIT </span>
+            <span>{t("login.content-form.btn-submit")}</span>
           </button>
         </div>
         <div className="text-center">
@@ -109,7 +115,7 @@ const Login = (props) => {
             }}
           >
             {" "}
-            &#62;&#62; Go to Homepage
+            &#62;&#62; {t("login.content-form.text-center")}
           </span>
         </div>
       </div>

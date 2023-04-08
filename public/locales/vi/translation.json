@@ -1,11 +1,49 @@
 {
 
-          "homepage": {
-            "title1": " Có nhiều cách để hỏi...",
-            "title2": "Không biết thì google",
-            "title3": {
-              "login": "Get started. It's free"
-            }
-          }
+  "homepage": {
+    "title1": " Có nhiều cách để hỏi...",
+    "title2": "Không biết thì google",
+    "title3": {
+      "login": "Hãy bắt đầu với trải nghiệm miễn phí",
+      "users":"Làm ngay nào"
+  }
+          },
+  "admin":{
+    "Settings": "Cài đặt",
+    "basic-nav-dropdown":{
+      "profile": "Hồ sơ",
+      "logout": "Đăng xuất"
+}
+  },
+  "header":{
+    "navbar-brand":"Tuấn Hiệp",
+    "basic-navbar-nav":{
+      "nav-link1": "Trang chủ",
+      "nav-link2": "Người dùng",
+      "nav-link3": "Quản trị viên",
+      "btn-login":" Đăng nhập",
+      "btn-signup": " Đăng kí",
+      "Settings": "Cài đặt",
+      "basic-nav-dropdown":{
+        "profile": "Hồ sơ",
+        "logout": "Đăng xuất"
+      }
+      
+    }
+},
+"login":{
+  "header":"Bạn chưa có tài khoản ?",
+  "btn-register":" Đăng kí",
+  "title":"TuanHiep",
+  "welcom":"Xin chào, bạn là ?",
+  "content-form":{
+      "email": "Email",
+      "password":"Mật khẩu",
+      "forgot-password":"Quên mật khẩu ?",
+      "btn-submit":"Đăng nhập vào TuanHiep ",
+      "text-center":"Đi đến trang chủ"
+  }
+}
+
         
       }

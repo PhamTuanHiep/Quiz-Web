@@ -48,7 +48,7 @@ const SideBar = (props) => {
             }}
           >
             <DiReact size={"3em"} color={"00bfff"} />
-            <span onClick={() => navigate("/")}>Hỏi dân IT</span>
+            <span onClick={() => navigate("/")}>Tuan Hiep</span>
           </div>
         </SidebarHeader>
 
