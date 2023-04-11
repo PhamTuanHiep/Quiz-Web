@@ -3,7 +3,7 @@ import ReactDOM from "react-dom/client";
 import reportWebVitals from "./reportWebVitals";
 import { Provider } from "react-redux";
 import { store, persistor } from "./redux/store";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter } from "react-router-dom";
 import Layout from "./Layout";
 import { PersistGate } from "redux-persist/integration/react";
 import i18n from "./utils/i18n";
