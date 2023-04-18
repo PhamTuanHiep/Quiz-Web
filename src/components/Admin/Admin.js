@@ -3,15 +3,16 @@ import "./Admin.scss";
 import { FaBars } from "react-icons/fa";
 import { useState } from "react";
 import { Outlet } from "react-router-dom";
-import { ToastContainer, toast } from "react-toastify";
 import PerfectScrollbar from "react-perfect-scrollbar";
 import Language from "../Header/Language";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import "react-toastify/dist/ReactToastify.css";
 import { useTranslation } from "react-i18next";
-
+import ModalProfile from "../Header/ModalProfile";
 const Admin = (props) => {
   const [collapsed, setCollapsed] = useState(false);
+  const [isShowModalProfile, setIsShowModalProfile] = useState(false);
+
   const { t } = useTranslation();
 
   return (
@@ -27,7 +28,10 @@ const Admin = (props) => {
           <div className="rightside">
             <Language />
             <NavDropdown title={t("admin.Settings")} id="basic-nav-dropdown">
-              <NavDropdown.Item className="profile">
+              <NavDropdown.Item
+                className="profile"
+                onClick={() => setIsShowModalProfile(true)}
+              >
                 {t("admin.basic-nav-dropdown.profile")}
               </NavDropdown.Item>
               <NavDropdown.Item className="logout">
@@ -41,6 +45,10 @@ const Admin = (props) => {
             <Outlet />
           </PerfectScrollbar>
         </div>
+        <ModalProfile
+          show={isShowModalProfile}
+          setShow={setIsShowModalProfile}
+        />
       </div>
     </div>
   );
