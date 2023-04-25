@@ -6,9 +6,6 @@ import PerfectScrollbar from "react-perfect-scrollbar";
 import { useDispatch, useSelector } from "react-redux";
 
 const App = () => {
-  // const count = useSelector((state) => state.counter.count);
-  //stateRedux => call Reducer => state's reducer
-  // const dispatch = useDispatch();
   return (
     <div className="app-container">
       <div className="header-container">
