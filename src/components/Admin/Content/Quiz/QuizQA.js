@@ -253,7 +253,6 @@ const QuizQA = (props) => {
       setIspreviewImage(true);
     }
   };
-  console.log("questions:", questions);
 
   return (
     <div className="questions-container">

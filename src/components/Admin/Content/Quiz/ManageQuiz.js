@@ -37,6 +37,10 @@ const ManageQuiz = (props) => {
   };
 
   const handleChangeFile = (event) => {
+    console.log("event:", event);
+    console.log("event.target: ", event.target);
+    console.log("event.target.files: ", event.target.files);
+
     if (event.target && event.target.files && event.target.files[0]) {
       setImage(event.target.files[0]);
     }

@@ -1,3 +1,12 @@
+# web experience
+
+1. Install exxtension:
+   Allow CORS: Access-Control-Allow-Origin
+2. Acess web: https://quiz-app-45a26.web.app/quiz/1
+3. Account
+   gmaiL: user@gmail.com
+   pass: 123456
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
